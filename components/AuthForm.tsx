@@ -24,6 +24,7 @@ import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { getLoggedInUser, signIn, signUp } from '@/lib/actions/user.actions';
 import PlaidLink from './PlaidLink';
+import PasswordInput from "@/components/PasswordInput";
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
@@ -141,7 +142,21 @@ const AuthForm = ({ type }: { type: string }) => {
 
               <CustomInput control={form.control} name='email' label="Email" placeholder='Enter your email' />
 
-              <CustomInput control={form.control} name='password' label="Password" placeholder='Enter your password' />
+              <PasswordInput
+                control={form.control}
+                name="password"
+                label="Password"
+                placeholder="Enter your password"
+              />
+
+              {type === "sign-up" && (
+                <PasswordInput
+                  control={form.control}
+                  name="confirmPassword"
+                  label="Confirm Password"
+                  placeholder="Enter your password"
+                />
+              )}
 
               <div className="flex flex-col gap-4">
                 <Button type="submit" disabled={isLoading} className="form-btn">
